@@ -1,3 +1,25 @@
+/* ==UserStyle==
+@name           Возвращаем кнопку "дизлайка" назад на прошлое место
+@namespace      https://github.com/TentacleTenticals/DTF-move-dislike-buttons
+@homepageURL    https://github.com/TentacleTenticals/DTF--move-dislike-buttons
+@updateURL      https://github.com/TentacleTenticals/DTF-move-dislike-buttons/raw/main/style.css
+@version        1.0
+@description    Тёмная тема для DTF. Подходит только для расширений Stylus и Stylish.
+@author         Tentacle Tenticals
+@license MIT
+==/UserStyle== */
+
+@-moz-document domain("dtf.ru") {
+/* ROOT */
+:root {
+    --like-color-hover: rgb(29,200,27);
+    --like-color-active: rgb(29,200,27);
+    
+    --dislike-color-hover: red;
+    --dislike-color-active: yellow;
+}
+
+
 /* Комментарии */
 /* Меняем порядок элементов */
 .comment__avatar {
@@ -122,10 +144,10 @@
 
 /* Ховеры "лайков/дизлайков" */
 .comment :is(.like-button--action-like:hover, .like-button--action-like:hover .like-button__count) {
-    color: rgb(29,200,27);
+    color: var(--like-color-hover);
 }
 .comment .like-button--action-dislike:hover {
-    color: red;
+    color: var(--dislike-color-hover);
 }
 
 
@@ -181,13 +203,17 @@
 
 /* "Лайки/Дизлайки" */
 .content-footer.content-footer:is(.content-footer--short, .content-footer--full) :is(.like-button--action-like:hover, .like-button--action-like:hover .like-button__count) {
-    color: rgb(29,200,27);
+    color: var(--like-color-hover);
 }
 .content-footer.content-footer:is(.content-footer--short, .content-footer--full) .like-button--action-dislike:hover {
-    color: red;
+    color: var(--dislike-color-hover);
 }
 
 /* Цвет уже "лайкнутого" комментария/статьи */
 .like-button--active {
-    color: rgb(29,200,27);
+    color: var(--like-color-active);
+}
+.dislike-button--active {
+    color: var(--dislike-color-active);
+}
 }
