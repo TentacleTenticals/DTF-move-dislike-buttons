@@ -16,7 +16,7 @@
     --like-color-active: rgb(29,200,27);
     
     --dislike-color-hover: red;
-    --dislike-color-active: yellow;
+    --dislike-color-active: red;
 }
 
 
@@ -198,6 +198,12 @@
 .content-footer :is(.like-button--action-like,
 .like-button--action-dislike) {
     --like-color-text-hover: unset;
+	--like-color-background-hover: unset;
+    --like-color-active: unset;
+}
+.like-button--action-dislike {
+    --like-color-text-hover: unset;
+    --like-color-background-hover: unset;
     --like-color-active: unset;
 }
 
@@ -210,10 +216,10 @@
 }
 
 /* Цвет уже "лайкнутого" комментария/статьи */
-.like-button--active {
+.like-button--action-like.like-button--active {
     color: var(--like-color-active);
 }
-.dislike-button--active {
+.like-button--action-dislike.like-button--active {
     color: var(--dislike-color-active);
 }
 }
