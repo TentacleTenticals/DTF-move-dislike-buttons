@@ -1,225 +1,258 @@
 /* ==UserStyle==
-@name           Возвращаем кнопку "дизлайка" назад на прошлое место
+@name           DTF Return dislike buttons back to home
 @namespace      https://github.com/TentacleTenticals/DTF-move-dislike-buttons
 @homepageURL    https://github.com/TentacleTenticals/DTF--move-dislike-buttons
 @updateURL      https://github.com/TentacleTenticals/DTF-move-dislike-buttons/raw/main/style.css
-@version        1.0
-@description    Тёмная тема для DTF. Подходит только для расширений Stylus и Stylish.
+@version        1.1
+@description    Возвращает кнопки "дизлайков" на своё законное место. Стиль для расширений Stylus и Stylish.
 @author         Tentacle Tenticals
+@var color      like-color-hover  "Цвет ховера лайка"   #1dc81b
+@var color      like-color-active  "Цвет уже 'лайкнутого' лайка"   #03a101
+@var color      like-color-number  "Цвет количества лайков"   #03a101
+@var color      dislike-color-hover  "Цвет ховера дизлайка"   #f00
+@var color      dislike-color-active  "Цвет уже 'дизлайкнутого' дизлайка"   #f00
+@var color      dislike-color-number  "Цвет количества дизлайков"   #f00
 @license MIT
 ==/UserStyle== */
 
 @-moz-document domain("dtf.ru") {
 /* ROOT */
-:root {
-    --like-color-hover: rgb(29,200,27);
-    --like-color-active: rgb(29,200,27);
-    
-    --dislike-color-hover: red;
-    --dislike-color-active: red;
-}
+	
+	/* Список настроек стиля. Для Stylus и Styler не требуется */
+	/* 	:root {
+		--like-color-hover: #1dc81b;
+		--like-color-active: #03a101;
+		--like-color-number: #03a101;
 
+		--dislike-color-hover: #f00;
+		--dislike-color-active: #f00;
+		--dislike-color-number: #f00;
+	} */
 
-/* Комментарии */
-/* Меняем порядок элементов */
-.comment__avatar {
-    order: -1;
+	/* Отключаем анимацию (сердце, стрелка вниз) "лайка/дизлайка" */
+	.like-button__lottie {
+		display: none;
+	}
+	
+	/* Ховеры "лайков/дизлайков" */
+	/* Сносим изменения DTF */
+	.content-footer :is(.like-button--action-like,
+	.like-button--action-dislike) {
+		--like-color-text-hover: unset;
+		--like-color-background-hover: unset;
+		--like-color-active: unset;
+	}
+	.like-button--action-dislike {
+		--like-color-text-hover: unset;
+		--like-color-background-hover: unset;
+		--like-color-active: unset;
+	}
+	
+	/* Цвет уже "лайкнутого/дизлайкнутого" комментария/статьи */
+	.like-button--action-like.like-button--active {
+		color: var(--like-color-active);
+	}
+	.like-button--action-dislike.like-button--active {
+		color: var(--dislike-color-active);
+	}
+	
+	/* Цвет количества "лайков/дизлайков" */
+	.like-button--action-like .like-button__count {
+		color: var(--like-color-number);
+		font-weight: 500;
+	}
+	.like-button--action-dislike .like-button__count {
+		color: var(--dislike-color-number);
+		font-weight: 500;
+	}
 }
-.comment__author {
-    order: -1;
-}
-.comment__detail {
-    order: -1;
-}
-.comment__icon {
-    order: -1;
-}
-.comment__break {
-    order: -1;
-}
-.comment__expand-branch {
-    order: -1;
-}
-:is(.comment--with-no-replies .comment__load-more, .comment__load-more).comment__load-more {
-    order: -1;
-}
-.comment__text {
-    order: 1;
-}
-.comment__attaches {
-    order: 1;
-}
+@-moz-document domain("dtf.ru") {
+	/* Комментарии */
 
-/* Кнопка "Лайк" */
-.comment:not(.comment--reply) .like-button--action-like {
-    margin: 0px 5px 0px 0px;
-    order: 1;
-}
-/* Кнопка "Дизлайк" */
-.comment:not(.comment--reply) .like-button--action-dislike {
-    margin: 0px 10px 0px 0px;
-    order: 2;
-}
-/* Кнопка "Ответить" */
-.comment:not(.comment--reply) .like-button+.comment__action {
-    margin: -5px 12px 0px 0px;
-    order: 3;
-}
-/* Кнопка "..." */
-.comment:not(.comment--reply) .comment__action[air-module='module.etc_controls'] {
-    margin: -5px 0px 0px 0px;
-    order: 4;
-}
+	/* Меняем порядок элементов. Все возможные баги могут быть из-за этого, если элемент не указан в этом списке */
+	.comment__avatar {
+		order: -1;
+	}
+	.comment__author {
+		order: -1;
+	}
+	.comment__detail {
+		order: -1;
+	}
+	.comment__icon {
+		order: -1;
+	}
+	.comment__break {
+		order: -1;
+	}
+	.comment__expand-branch {
+		order: -1;
+	}
+	:is(.comment--with-no-replies .comment__load-more, .comment__load-more).comment__load-more {
+		order: -1;
+	}
+	.comment__text {
+		order: 1;
+	}
+	.comment__attaches {
+		order: 1;
+	}
 
-/* Коммент (ответ) */
-/* Кнопка "Лайк" */
-.comment.comment--reply .like-button--action-like {
-    margin: 0px 5px 0px 0px;
-    order: 1;
+	/* Кнопка "Лайк" */
+	.comment:not(.comment--reply) .like-button--action-like {
+		margin: 0px 5px 0px 0px;
+		order: 1;
+	}
+	/* Кнопка "Дизлайк" */
+	.comment:not(.comment--reply) .like-button--action-dislike {
+		margin: 0px 10px 0px 0px;
+		order: 2;
+	}
+	/* Кнопка "Ответить" */
+	.comment:not(.comment--reply) .like-button+.comment__action {
+		margin: -5px 12px 0px 0px;
+		order: 3;
+	}
+	/* Кнопка "..." */
+	.comment:not(.comment--reply) .comment__action[air-module='module.etc_controls'] {
+		margin: -5px 0px 0px 0px;
+		order: 4;
+	}
 }
-.comment.comment--reply .like-button__count {
-    margin: -14px 0px 0px 5px;
+@-moz-document domain("dtf.ru") {
+	/* Комментарий (ответ) */
+	
+	/* Кнопка "Лайк" */
+	.comment.comment--reply .like-button--action-like {
+		margin: 0px 5px 0px 0px;
+		order: 1;
+	}
+	/* Количество "лайков" */
+	.comment.comment--reply .like-button__count {
+		margin: -14px 0px 0px 5px;
+	}
+	/* Кнопка "Дизлайк" */
+	.comment.comment--reply .like-button--action-dislike {
+		margin: 0px 10px 0px 0px;
+		order: 2;
+	}
+	/* Кнопка "Ответить" */
+	.comment.comment--reply .like-button+.comment__action {
+		margin: -14px 12px 0px 0px;
+		order: 3;
+	}
+	/* Кнопка "..." */
+	.comment.comment--reply .comment__action[air-module='module.etc_controls'] {
+		margin: -14px 0px 0px 0px;
+		order: 4;
+	}
 }
-/* Кнопка "Дизлайк" */
-.comment.comment--reply .like-button--action-dislike {
-    margin: 0px 10px 0px 0px;
-    order: 2;
-}
-/* Кнопка "Ответить" */
-.comment.comment--reply .like-button+.comment__action {
-    margin: -14px 12px 0px 0px;
-    order: 3;
-}
-/* Кнопка "..." */
-.comment.comment--reply .comment__action[air-module='module.etc_controls'] {
-    margin: -14px 0px 0px 0px;
-    order: 4;
-}
+@-moz-document domain("dtf.ru") {
+	/* Замена иконок "лайков/дизлайков" (комментарии) */
+	
+	.comment .like-button__icon svg {
+		display: none;
+	}
+	/* Комментарий */
+	.comment:not(.comment--reply) .like-button--action-like::before {
+		content: '⌵';
+		font-size: 25px;
+		font-weight: 800;
+		line-height: unset;
+		margin: 0px 0px 0px 0px;
+		width: unset;
+		height: unset;
+		transform: scaley(-1);
+	}
+	.comment:not(.comment--reply) .like-button--action-dislike::before {
+		content: '⌵';
+		font-size: 25px;
+		font-weight: 800;
+		line-height: unset;
+		margin: -10px 0px 0px 0px;
+		width: unset;
+		height: unset;
+	}
 
-/* Заменить иконки "лайков/дизлайков" */
-.comment .like-button__icon svg {
-    display: none;
-}
-/* Коммент */
-.comment:not(.comment--reply) .like-button--action-like::before {
-    content: '⌵';
-    font-size: 25px;
-    font-weight: 800;
-    line-height: unset;
-    margin: 0px 0px 0px 0px;
-    width: unset;
-    height: unset;
-    transform: scaley(-1)
-}
-.comment:not(.comment--reply) .like-button--action-dislike::before {
-    content: '⌵';
-    font-size: 25px;
-    font-weight: 800;
-    line-height: unset;
-    margin: -10px 0px 0px 0px;
-    width: unset;
-    height: unset;
-}
+	/* Коммент (ответ) */
+	.comment.comment--reply .like-button--action-like::before {
+		content: '⌵';
+		font-size: 25px;
+		font-weight: 800;
+		line-height: unset;
+		margin: -10px 0px 0px 0px;
+		width: unset;
+		height: unset;
+		transform: scaley(-1);
+	}
+	.comment.comment--reply .like-button--action-dislike::before {
+		content: '⌵';
+		font-size: 25px;
+		font-weight: 800;
+		line-height: unset;
+		margin: -10px 0px 10px 0px;
+		width: unset;
+		height: unset;
+	}
 
-/* Коммент (ответ) */
-.comment.comment--reply .like-button--action-like::before {
-    content: '⌵';
-    font-size: 25px;
-    font-weight: 800;
-    line-height: unset;
-    margin: -10px 0px 0px 0px;
-    width: unset;
-    height: unset;
-    transform: scaley(-1)
+	/* Ховеры "лайков/дизлайков" */
+	.comment :is(.like-button--action-like:hover, .like-button--action-like:hover .like-button__count) {
+		color: var(--like-color-hover);
+	}
+	.comment .like-button--action-dislike:hover {
+		color: var(--dislike-color-hover);
+	}
 }
-.comment.comment--reply .like-button--action-dislike::before {
-    content: '⌵';
-    font-size: 25px;
-    font-weight: 800;
-    line-height: unset;
-    margin: -10px 0px 10px 0px;
-    width: unset;
-    height: unset;
+@-moz-document domain("dtf.ru") {
+	/* Статьи (страницы статей, "Популярное" и т.п) */
+	
+	.content-footer.content-footer:is(.content-footer--short, .content-footer--full) {
+		display: flex;
+	}
+	/* Кнопка "Лайк" */
+	.content-footer.content-footer:is(.content-footer--short, .content-footer--full) .content-footer__item:first-child {
+		order: -2;
+		margin: 0px 5px 0px 0px;
+	}
+	/* Кнопка "Дизлайк" */
+	.content-footer.content-footer:is(.content-footer--short, .content-footer--full) .content-footer__item:last-child {
+		margin: 0px 5px 0px 0px;
+		order: -1;
+	}
 }
+@-moz-document domain("dtf.ru") {
+	/* Замена иконок "лайков/дизлайков" (статьи, "Популярное" и т.п) */
+	
+	.content-footer.content-footer:is(.content-footer--short, .content-footer--full) .content-footer__item .like-button__icon svg {
+		display: none;
+	}
+	/* Иконка "Лайка" */
+	.content-footer.content-footer:is(.content-footer--short, .content-footer--full) .content-footer__item .like-button--action-like::before {
+		content: '⌵';
+		font-size: 25px;
+		font-weight: 800;
+		line-height: unset;
+		margin: 0px 0px 0px 0px;
+		width: unset;
+		height: unset;
+		transform: scaley(-1);
+	}
+	/* Иконка "Дизлайка" */
+	.content-footer.content-footer:is(.content-footer--short, .content-footer--full) .content-footer__item .like-button--action-dislike::before {
+		content: '⌵';
+		font-size: 25px;
+		font-weight: 800;
+		line-height: unset;
+		margin: -10px 0px 0px 0px;
+		width: unset;
+		height: unset;
+	}
 
-/* Ховеры "лайков/дизлайков" */
-.comment :is(.like-button--action-like:hover, .like-button--action-like:hover .like-button__count) {
-    color: var(--like-color-hover);
-}
-.comment .like-button--action-dislike:hover {
-    color: var(--dislike-color-hover);
-}
-
-
-/* Статьи (страницы статей, "Популярное" и т.п) */
-.content-footer.content-footer:is(.content-footer--short, .content-footer--full) {
-    display: flex;
-}
-/* Кнопка "Лайк" */
-.content-footer.content-footer:is(.content-footer--short, .content-footer--full) .content-footer__item:first-child {
-    order: -2;
-    margin: 0px 5px 0px 0px;
-}
-/* Кнопка "Дизлайк" */
-.content-footer.content-footer:is(.content-footer--short, .content-footer--full) .content-footer__item:last-child {
-    margin: 0px 5px 0px 0px;
-    order: -1;
-}
-
-/* Заменить иконки "лайков/дизлайков" */
-.content-footer.content-footer:is(.content-footer--short, .content-footer--full) .content-footer__item .like-button__icon svg {
-    display: none;
-}
-/* Иконка "Лайка" */
-.content-footer.content-footer:is(.content-footer--short, .content-footer--full) .content-footer__item .like-button--action-like::before {
-    content: '⌵';
-    font-size: 25px;
-    font-weight: 800;
-    line-height: unset;
-    margin: 0px 0px 0px 0px;
-    width: unset;
-    height: unset;
-    transform: scaley(-1)
-}
-/* Иконка "Дизлайка" */
-.content-footer.content-footer:is(.content-footer--short, .content-footer--full) .content-footer__item .like-button--action-dislike::before {
-    content: '⌵';
-    font-size: 25px;
-    font-weight: 800;
-    line-height: unset;
-    margin: -10px 0px 0px 0px;
-    width: unset;
-    height: unset;
-}
-
-
-/* Ховеры "лайков/дизлайков" */
-/* Сносим изменения DTF */
-.content-footer :is(.like-button--action-like,
-.like-button--action-dislike) {
-    --like-color-text-hover: unset;
-	--like-color-background-hover: unset;
-    --like-color-active: unset;
-}
-.like-button--action-dislike {
-    --like-color-text-hover: unset;
-    --like-color-background-hover: unset;
-    --like-color-active: unset;
-}
-
-/* "Лайки/Дизлайки" */
-.content-footer.content-footer:is(.content-footer--short, .content-footer--full) :is(.like-button--action-like:hover, .like-button--action-like:hover .like-button__count) {
-    color: var(--like-color-hover);
-}
-.content-footer.content-footer:is(.content-footer--short, .content-footer--full) .like-button--action-dislike:hover {
-    color: var(--dislike-color-hover);
-}
-
-/* Цвет уже "лайкнутого" комментария/статьи */
-.like-button--action-like.like-button--active {
-    color: var(--like-color-active);
-}
-.like-button--action-dislike.like-button--active {
-    color: var(--dislike-color-active);
-}
+	/* "Лайки/Дизлайки" */
+	.content-footer.content-footer:is(.content-footer--short, .content-footer--full) :is(.like-button--action-like:hover, .like-button--action-like:hover .like-button__count) {
+		color: var(--like-color-hover);
+	}
+	.content-footer.content-footer:is(.content-footer--short, .content-footer--full) .like-button--action-dislike:hover {
+		color: var(--dislike-color-hover);
+	}
 }
