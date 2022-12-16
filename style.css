@@ -3,7 +3,7 @@
 @namespace      https://github.com/TentacleTenticals/DTF-move-dislike-buttons
 @homepageURL    https://github.com/TentacleTenticals/DTF--move-dislike-buttons
 @updateURL      https://github.com/TentacleTenticals/DTF-move-dislike-buttons/raw/main/style.css
-@version        1.1.0
+@version        1.1.1
 @description    Возвращает кнопки "дизлайков" на своё законное место. Стиль для расширений Stylus и Stylish.
 @author         Tentacle Tenticals
 @var color      like-color-hover  "Цвет ховера лайка"   #1dc81b
@@ -85,28 +85,35 @@
 	.comment__break {
 		order: -1;
 	}
-	.comment__expand-branch {
-		order: -1;
-	}
 	.comment__text {
 		order: 1;
 	}
 	.comment__attaches {
 		order: 1;
 	}
-	:is(.comment--with-no-replies .comment__load-more, .comment__load-more).comment__load-more {
+	.comment__expand-branch {
 		order: 5;
+		margin: 0px 0px -20px 10px;
+	}
+	:is(.comment--with-no-replies .comment__load-more, .comment__load-more).comment__load-more {
+		order: 6;
     margin: 0px 0px -20px 10px;
 	}
 
 	/* Кнопка "Лайк" */
 	.comment:not(.comment--reply) .like-button--action-like {
+		height: 22px;
 		margin: 0px 5px 0px 0px;
+		order: 1;
+	}
+	.comment:not(.comment--reply) .like-button--action-like .like-button__count {
+		margin: -5px 0px 0px 5px;
 		order: 1;
 	}
 	/* Кнопка "Дизлайк" */
 	.comment:not(.comment--reply) .like-button--action-dislike {
-		margin: 0px 10px 0px 0px;
+		height: 22px;
+		margin: -5px 10px 0px 0px;
 		order: 2;
 	}
 	/* Кнопка "Ответить" */
@@ -151,7 +158,7 @@
 @-moz-document domain("dtf.ru") {
 	/* Замена иконок "лайков/дизлайков" (комментарии) */
 	
-	.comment .like-button__icon svg {
+	.comment .like-button__icon {
 		display: none;
 	}
 	/* Комментарий */
@@ -159,7 +166,7 @@
 		content: '⌵';
 		font-size: 25px;
 		font-weight: 800;
-		line-height: unset;
+		line-height: 22px;
 		margin: 0px 0px 0px 0px;
 		width: unset;
 		height: unset;
@@ -169,7 +176,7 @@
 		content: '⌵';
 		font-size: 25px;
 		font-weight: 800;
-		line-height: unset;
+		line-height: 22px;
 		margin: -10px 0px 0px 0px;
 		width: unset;
 		height: unset;
@@ -224,7 +231,7 @@
 @-moz-document domain("dtf.ru") {
 	/* Замена иконок "лайков/дизлайков" (статьи, "Популярное" и т.п) */
 	
-	.content-footer.content-footer:is(.content-footer--short, .content-footer--full) .content-footer__item .like-button__icon svg {
+	.content-footer.content-footer:is(.content-footer--short, .content-footer--full) .content-footer__item .like-button__icon {
 		display: none;
 	}
 	/* Иконка "Лайка" */
@@ -232,7 +239,7 @@
 		content: '⌵';
 		font-size: 25px;
 		font-weight: 800;
-		line-height: unset;
+		line-height: 22px;
 		margin: 0px 0px 0px 0px;
 		width: unset;
 		height: unset;
