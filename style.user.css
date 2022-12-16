@@ -2,8 +2,8 @@
 @name           DTF Return dislike buttons back to home
 @namespace      https://github.com/TentacleTenticals/DTF-move-dislike-buttons
 @homepageURL    https://github.com/TentacleTenticals/DTF--move-dislike-buttons
-@updateURL      https://github.com/TentacleTenticals/DTF-move-dislike-buttons/raw/main/style.css
-@version        1.1.2
+@updateURL      https://github.com/TentacleTenticals/DTF-move-dislike-buttons/1.1.2/main/style.css
+@version        1.1.3
 @description    Возвращает кнопки "дизлайков" на своё законное место. Стиль для расширений Stylus и Stylish.
 @author         Tentacle Tenticals
 @var color      like-color-hover  "Цвет ховера лайка"   #1dc81b
@@ -114,27 +114,32 @@
 	}
 	.comment:not(.comment--reply) .like-button--action-like .like-button__count {
 		margin: -5px 0px 0px 5px;
-		order: 3;
 	}
 	/* Кнопка "Дизлайк" */
 	.comment:not(.comment--reply) .like-button--action-dislike {
 		height: 22px;
 		margin: -5px 10px 0px 0px;
-		order: 4;
+		order: 3;
 	}
 	/* Кнопка "..." */
 	.comment:not(.comment--reply) .comment__action[air-module='module.etc_controls'] {
 		margin: -5px 0px 0px 0px;
-		order: 5;
+		order: 4;
 	}
 }
 @-moz-document domain("dtf.ru") {
 	/* Комментарий (ответ) */
 	
+	/* Кнопка "Ответить" */
+	.comment.comment--reply .like-button+.comment__action {
+		margin: -14px 12px 0px 0px;
+		order: 1;
+	}
+	
 	/* Кнопка "Лайк" */
 	.comment.comment--reply .like-button--action-like {
 		margin: 0px 5px 0px 0px;
-		order: 1;
+		order: 2;
 	}
 	/* Количество "лайков" */
 	.comment.comment--reply .like-button__count {
@@ -143,11 +148,6 @@
 	/* Кнопка "Дизлайк" */
 	.comment.comment--reply .like-button--action-dislike {
 		margin: 0px 10px 0px 0px;
-		order: 2;
-	}
-	/* Кнопка "Ответить" */
-	.comment.comment--reply .like-button+.comment__action {
-		margin: -14px 12px 0px 0px;
 		order: 3;
 	}
 	/* Кнопка "..." */
