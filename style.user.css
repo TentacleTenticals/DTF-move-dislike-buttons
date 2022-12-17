@@ -3,7 +3,7 @@
 @namespace      https://github.com/TentacleTenticals/DTF-move-dislike-buttons
 @homepageURL    https://github.com/TentacleTenticals/DTF--move-dislike-buttons
 @updateURL      https://github.com/TentacleTenticals/DTF-move-dislike-buttons/raw/main/style.css
-@version        1.1.5
+@version        1.1.6
 @description    Возвращает кнопки "дизлайков" на своё законное место. Стиль для расширений Stylus и Stylish.
 @author         Tentacle Tenticals
 @var color      like-color-hover  "Цвет ховера лайка"   #1dc81b
@@ -99,7 +99,7 @@
 		margin: 0px 0px -20px 10px;
 	}
 	:is(.comment--with-no-replies .comment__load-more, .comment__load-more).comment__load-more {
-		order: 9;
+		order: 21;
     margin: 0px 0px -20px 10px;
 	}
 	.comment .comment-writing {
