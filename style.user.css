@@ -1,9 +1,9 @@
 /* ==UserStyle==
 @name           DTF Return dislike buttons back to home
 @namespace      https://github.com/TentacleTenticals/DTF-move-dislike-buttons
-@homepageURL    https://github.com/TentacleTenticals/DTF-move-dislike-buttons
+@homepageURL    https://github.com/TentacleTenticals/DTF--move-dislike-buttons
 @updateURL      https://github.com/TentacleTenticals/DTF-move-dislike-buttons/raw/main/style.css
-@version        1.1.1
+@version        1.1.4
 @description    Возвращает кнопки "дизлайков" на своё законное место. Стиль для расширений Stylus и Stylish.
 @author         Tentacle Tenticals
 @var color      like-color-hover  "Цвет ховера лайка"   #1dc81b
@@ -99,26 +99,29 @@
 		order: 6;
     margin: 0px 0px -20px 10px;
 	}
+	.comment .comment-writing {
+		order: 10;
+	}
+	
+	/* Кнопка "Ответить" */
+	.comment:not(.comment--reply) .like-button+.comment__action {
+		margin: -5px 12px 0px 0px;
+		order: 1;
+	}
 
 	/* Кнопка "Лайк" */
 	.comment:not(.comment--reply) .like-button--action-like {
 		height: 22px;
 		margin: 0px 5px 0px 0px;
-		order: 1;
+		order: 2;
 	}
 	.comment:not(.comment--reply) .like-button--action-like .like-button__count {
 		margin: -5px 0px 0px 5px;
-		order: 1;
 	}
 	/* Кнопка "Дизлайк" */
 	.comment:not(.comment--reply) .like-button--action-dislike {
 		height: 22px;
 		margin: -5px 10px 0px 0px;
-		order: 2;
-	}
-	/* Кнопка "Ответить" */
-	.comment:not(.comment--reply) .like-button+.comment__action {
-		margin: -5px 12px 0px 0px;
 		order: 3;
 	}
 	/* Кнопка "..." */
@@ -130,10 +133,16 @@
 @-moz-document domain("dtf.ru") {
 	/* Комментарий (ответ) */
 	
+	/* Кнопка "Ответить" */
+	.comment.comment--reply .like-button+.comment__action {
+		margin: -14px 12px 0px 0px;
+		order: 1;
+	}
+	
 	/* Кнопка "Лайк" */
 	.comment.comment--reply .like-button--action-like {
 		margin: 0px 5px 0px 0px;
-		order: 1;
+		order: 2;
 	}
 	/* Количество "лайков" */
 	.comment.comment--reply .like-button__count {
@@ -142,11 +151,6 @@
 	/* Кнопка "Дизлайк" */
 	.comment.comment--reply .like-button--action-dislike {
 		margin: 0px 10px 0px 0px;
-		order: 2;
-	}
-	/* Кнопка "Ответить" */
-	.comment.comment--reply .like-button+.comment__action {
-		margin: -14px 12px 0px 0px;
 		order: 3;
 	}
 	/* Кнопка "..." */
