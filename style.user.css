@@ -3,7 +3,7 @@
 @namespace      https://github.com/TentacleTenticals/DTF-move-dislike-buttons
 @homepageURL    https://github.com/TentacleTenticals/DTF--move-dislike-buttons
 @updateURL      https://github.com/TentacleTenticals/DTF-move-dislike-buttons/raw/main/style.css
-@version        1.1.4
+@version        1.1.5
 @description    Возвращает кнопки "дизлайков" на своё законное место. Стиль для расширений Stylus и Stylish.
 @author         Tentacle Tenticals
 @var color      like-color-hover  "Цвет ховера лайка"   #1dc81b
@@ -17,6 +17,11 @@
 
 @-moz-document domain("dtf.ru") {
 /* ROOT */
+	@font-face {
+	 font-family: dtfIsBack;
+	 src: url('https://raw.githubusercontent.com/TentacleTenticals/DTF-move-dislike-buttons/main/fonts/Icomooner.ttf');
+	}
+/* 	@import url('https://github.com/TentacleTenticals/DTF-move-dislike-buttons/blob/main/fonts/Icomooner.ttf?raw=true'); */
 	
 	/* Список настроек стиля. Для Stylus и Styler не требуется */
 	/* 	:root {
@@ -36,13 +41,8 @@
 	
 	/* Ховеры "лайков/дизлайков" */
 	/* Сносим изменения DTF */
-	.content-footer :is(.like-button--action-like,
+	:is(.like-button--action-like,
 	.like-button--action-dislike) {
-		--like-color-text-hover: unset;
-		--like-color-background-hover: unset;
-		--like-color-active: unset;
-	}
-	.like-button--action-dislike {
 		--like-color-text-hover: unset;
 		--like-color-background-hover: unset;
 		--like-color-active: unset;
@@ -71,32 +71,35 @@
 
 	/* Меняем порядок элементов. Все возможные баги могут быть из-за этого, если элемент не указан в этом списке */
 	.comment__avatar {
-		order: -1;
+		order: 0;
 	}
 	.comment__author {
-		order: -1;
-	}
-	.comment__detail {
-		order: -1;
+		order: 1;
 	}
 	.comment__icon {
-		order: -1;
+		order: 2;
+	}
+	.comment__action[air-module='module.etc_controls'] {
+		order: 3;
 	}
 	.comment__break {
-		order: -1;
+		order: 4;
+	}
+	.comment__detail {
+		order: 5;
 	}
 	.comment__text {
-		order: 1;
+		order: 6;
 	}
 	.comment__attaches {
-		order: 1;
+		order: 7;
 	}
 	.comment__expand-branch {
-		order: 5;
+		order: 20;
 		margin: 0px 0px -20px 10px;
 	}
 	:is(.comment--with-no-replies .comment__load-more, .comment__load-more).comment__load-more {
-		order: 6;
+		order: 9;
     margin: 0px 0px -20px 10px;
 	}
 	.comment .comment-writing {
@@ -105,29 +108,28 @@
 	
 	/* Кнопка "Ответить" */
 	.comment:not(.comment--reply) .like-button+.comment__action {
-		margin: -5px 12px 0px 0px;
-		order: 1;
+		margin: 0px 10px 0px 0px;
+		order: 15;
 	}
 
 	/* Кнопка "Лайк" */
 	.comment:not(.comment--reply) .like-button--action-like {
-		height: 22px;
-		margin: 0px 5px 0px 0px;
-		order: 2;
+		height: 20px;
+		margin: -5px 5px 0px 0px;
+		order: 16;
 	}
-	.comment:not(.comment--reply) .like-button--action-like .like-button__count {
-		margin: -5px 0px 0px 5px;
+	.comment:not(.comment--reply) .like-button__count {
+		margin: 5px 0px 0px 7px;
 	}
 	/* Кнопка "Дизлайк" */
 	.comment:not(.comment--reply) .like-button--action-dislike {
-		height: 22px;
-		margin: -5px 10px 0px 0px;
-		order: 3;
+		height: 20px;
+		margin: 5px 10px 0px 0px;
+		order: 17;
 	}
 	/* Кнопка "..." */
 	.comment:not(.comment--reply) .comment__action[air-module='module.etc_controls'] {
 		margin: -5px 0px 0px 0px;
-		order: 4;
 	}
 }
 @-moz-document domain("dtf.ru") {
@@ -135,28 +137,27 @@
 	
 	/* Кнопка "Ответить" */
 	.comment.comment--reply .like-button+.comment__action {
-		margin: -14px 12px 0px 0px;
-		order: 1;
+		margin: 0px 10px 0px 0px;
+		order: 15;
 	}
 	
 	/* Кнопка "Лайк" */
 	.comment.comment--reply .like-button--action-like {
-		margin: 0px 5px 0px 0px;
-		order: 2;
+		margin: 5px 5px 0px 0px;
+		order: 16;
 	}
 	/* Количество "лайков" */
 	.comment.comment--reply .like-button__count {
-		margin: -14px 0px 0px 5px;
+		margin: -5px 0px 0px 7px;
 	}
 	/* Кнопка "Дизлайк" */
 	.comment.comment--reply .like-button--action-dislike {
-		margin: 0px 10px 0px 0px;
-		order: 3;
+		margin: 14px 0px 0px 0px;
+		order: 17;
 	}
 	/* Кнопка "..." */
 	.comment.comment--reply .comment__action[air-module='module.etc_controls'] {
-		margin: -14px 0px 0px 0px;
-		order: 4;
+		margin: -5px 0px 0px 0px;
 	}
 }
 @-moz-document domain("dtf.ru") {
@@ -167,44 +168,56 @@
 	}
 	/* Комментарий */
 	.comment:not(.comment--reply) .like-button--action-like::before {
-		content: '⌵';
-		font-size: 25px;
+/* 		content: '⌵'; */
+		content: "\e900";
+		font-family: dtfIsBack;
+		font-size: 6px;
 		font-weight: 800;
 		line-height: 22px;
 		margin: 0px 0px 0px 0px;
-		width: unset;
+		width: 14px;
 		height: unset;
-		transform: scaley(-1);
+		text-align: left;
+/* 		transform: scaley(-1); */
 	}
 	.comment:not(.comment--reply) .like-button--action-dislike::before {
-		content: '⌵';
-		font-size: 25px;
+/* 		content: '⌵'; */
+		content: "\e901";
+		font-family: dtfIsBack;
+		font-size: 6px;
 		font-weight: 800;
 		line-height: 22px;
 		margin: -10px 0px 0px 0px;
-		width: unset;
+		width: 14px;
 		height: unset;
+		text-align: left;
 	}
 
 	/* Коммент (ответ) */
 	.comment.comment--reply .like-button--action-like::before {
-		content: '⌵';
-		font-size: 25px;
+/* 		content: '⌵'; */
+		content: "\e900";
+		font-family: dtfIsBack;
+		font-size: 6px;
 		font-weight: 800;
 		line-height: unset;
 		margin: -10px 0px 0px 0px;
-		width: unset;
+		width: 14px;
 		height: unset;
-		transform: scaley(-1);
+		text-align: left;
+/* 		transform: scaley(-1); */
 	}
 	.comment.comment--reply .like-button--action-dislike::before {
-		content: '⌵';
-		font-size: 25px;
+/* 		content: '⌵'; */
+		content: "\e901";
+		font-family: dtfIsBack;
+		font-size: 6px;
 		font-weight: 800;
 		line-height: unset;
 		margin: -10px 0px 10px 0px;
-		width: unset;
+		width: 14px;
 		height: unset;
+		text-align: left;
 	}
 
 	/* Ховеры "лайков/дизлайков" */
@@ -221,15 +234,28 @@
 	.content-footer.content-footer:is(.content-footer--short, .content-footer--full) {
 		display: flex;
 	}
+	.content-footer.content-footer:is(.content-footer--short, .content-footer--full) .content-footer__item.content-footer__item--controls {
+		order: 2;
+	}
+	.content-footer.content-footer:is(.content-footer--short, .content-footer--full) .content-footer__item:nth-child(2) {
+		order: 0;
+	}
+	.content-footer.content-footer:is(.content-footer--short, .content-footer--full) .content-footer__item:nth-child(3) {
+		order: 1;
+	}
+	
 	/* Кнопка "Лайк" */
 	.content-footer.content-footer:is(.content-footer--short, .content-footer--full) .content-footer__item:first-child {
-		order: -2;
+		order: 10;
 		margin: 0px 5px 0px 0px;
+	}
+	.content-footer.content-footer:is(.content-footer--short, .content-footer--full) .like-button__count {
+		margin: 0px 5px 0px 7px;
 	}
 	/* Кнопка "Дизлайк" */
 	.content-footer.content-footer:is(.content-footer--short, .content-footer--full) .content-footer__item:last-child {
 		margin: 0px 5px 0px 0px;
-		order: -1;
+		order: 11;
 	}
 }
 @-moz-document domain("dtf.ru") {
@@ -239,24 +265,26 @@
 		display: none;
 	}
 	/* Иконка "Лайка" */
-	.content-footer.content-footer:is(.content-footer--short, .content-footer--full) .content-footer__item .like-button--action-like::before {
-		content: '⌵';
-		font-size: 25px;
-		font-weight: 800;
-		line-height: 22px;
-		margin: 0px 0px 0px 0px;
-		width: unset;
-		height: unset;
-		transform: scaley(-1);
+	.content-footer.content-footer:is(.content-footer--short, .content-footer--full) .like-button--action-like::before {
+		content: "\e900";
+    font-family: dtfIsBack;
+    font-size: 6px;
+    font-weight: 100;
+    line-height: 20px;
+    margin: -5px 0px 0px 0px;
+    width: 14px;
+    height: unset;
+    text-align: left;
 	}
 	/* Иконка "Дизлайка" */
-	.content-footer.content-footer:is(.content-footer--short, .content-footer--full) .content-footer__item .like-button--action-dislike::before {
-		content: '⌵';
-		font-size: 25px;
-		font-weight: 800;
-		line-height: unset;
-		margin: -10px 0px 0px 0px;
-		width: unset;
+	.content-footer.content-footer:is(.content-footer--short, .content-footer--full) .like-button--action-dislike::before {
+		content: "\e900";
+		font-family: dtfIsBack;
+		font-size: 6px;
+		font-weight: 100;
+		line-height: 20px;
+		margin: -5px 1px 0px 0px;
+		width: 14px;
 		height: unset;
 	}
 
