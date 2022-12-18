@@ -3,7 +3,7 @@
 @namespace      https://github.com/TentacleTenticals/DTF-move-dislike-buttons
 @homepageURL    https://github.com/TentacleTenticals/DTF--move-dislike-buttons
 @updateURL      https://github.com/TentacleTenticals/DTF-move-dislike-buttons/raw/main/style.css
-@version        1.1.6
+@version        1.1.7
 @description    Возвращает кнопки "дизлайков" на своё законное место. Стиль для расширений Stylus и Stylish.
 @author         Tentacle Tenticals
 @var color      like-color-hover  "Цвет ховера лайка"   #1dc81b
@@ -175,7 +175,7 @@
 		font-weight: 800;
 		line-height: 22px;
 		margin: 0px 0px 0px 0px;
-		width: 14px;
+		width: 17px;
 		height: unset;
 		text-align: left;
 /* 		transform: scaley(-1); */
@@ -188,7 +188,7 @@
 		font-weight: 800;
 		line-height: 22px;
 		margin: -10px 0px 0px 0px;
-		width: 14px;
+		width: 17px;
 		height: unset;
 		text-align: left;
 	}
@@ -202,7 +202,7 @@
 		font-weight: 800;
 		line-height: unset;
 		margin: -10px 0px 0px 0px;
-		width: 14px;
+		width: 17px;
 		height: unset;
 		text-align: left;
 /* 		transform: scaley(-1); */
@@ -215,7 +215,7 @@
 		font-weight: 800;
 		line-height: unset;
 		margin: -10px 0px 10px 0px;
-		width: 14px;
+		width: 17px;
 		height: unset;
 		text-align: left;
 	}
@@ -250,7 +250,10 @@
 		margin: 0px 5px 0px 0px;
 	}
 	.content-footer.content-footer:is(.content-footer--short, .content-footer--full) .like-button__count {
-		margin: 0px 5px 0px 7px;
+		margin: 0px 1px 0px 5px;
+	}
+	.content-footer.content-footer:is(.content-footer--short, .content-footer--full) .like-button__count::before {
+		display: none;
 	}
 	/* Кнопка "Дизлайк" */
 	.content-footer.content-footer:is(.content-footer--short, .content-footer--full) .content-footer__item:last-child {
@@ -272,20 +275,21 @@
     font-weight: 100;
     line-height: 20px;
     margin: -5px 0px 0px 0px;
-    width: 14px;
+    width: 17px;
     height: unset;
     text-align: left;
 	}
 	/* Иконка "Дизлайка" */
 	.content-footer.content-footer:is(.content-footer--short, .content-footer--full) .like-button--action-dislike::before {
-		content: "\e900";
+		content: "\e901";
 		font-family: dtfIsBack;
 		font-size: 6px;
 		font-weight: 100;
 		line-height: 20px;
 		margin: -5px 1px 0px 0px;
-		width: 14px;
+		width: 17px;
 		height: unset;
+		text-align: left;
 	}
 
 	/* "Лайки/Дизлайки" */
